@@ -78,7 +78,7 @@ public class UploadController {
             return response;
         }
 
-        // Validate .csv upload
+        // Validate .csv upload Extension
 
         if(!CSVCommons.isCSVFile(csvfile)) {
             response.addMessage(new Message(csvfile.getOriginalFilename(), "Error: this is not a CSV file!", "fail"));
