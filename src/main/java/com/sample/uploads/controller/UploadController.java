@@ -70,7 +70,7 @@ public class UploadController {
 
         Response response = new Response();
 
-        // Checking the upload-file's name before processing
+        // Validate file name
         if (csvfile.getOriginalFilename().isEmpty()) {
             response.addMessage(new Message(csvfile.getOriginalFilename(),
                     "No selected file to upload! Please do the checking", "fail"));
@@ -78,7 +78,7 @@ public class UploadController {
             return response;
         }
 
-        // checking the upload file's type is CSV or NOT
+        // Validate .csv upload
 
         if(!CSVCommons.isCSVFile(csvfile)) {
             response.addMessage(new Message(csvfile.getOriginalFilename(), "Error: this is not a CSV file!", "fail"));
@@ -87,7 +87,7 @@ public class UploadController {
 
 
         try {
-            // save file data to database
+            // Save csv file to Database
             uploadsService.store(csvfile.getInputStream());
             response.addMessage(new Message(csvfile.getOriginalFilename(), "Upload File Successfully!", "ok"));
         } catch (Exception e) {
